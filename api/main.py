@@ -1,3 +1,10 @@
+# Load Railway config (hardcoded values) if running on Railway
+# This must be imported BEFORE dotenv so env vars can override
+try:
+    import config.railway_config  # noqa: F401
+except ImportError:
+    pass
+
 # Load environment variables
 from dotenv import load_dotenv
 
@@ -95,6 +102,7 @@ app.add_middleware(
     excluded_paths=[
         "/",
         "/health",
+        "/api/health",
         "/docs",
         "/openapi.json",
         "/redoc",
@@ -171,4 +179,10 @@ async def root():
 
 @app.get("/health")
 async def health():
+    return {"status": "healthy"}
+
+
+@app.get("/api/health")
+async def api_health():
+    """Health endpoint accessible via Next.js proxy (for Railway)."""
     return {"status": "healthy"}

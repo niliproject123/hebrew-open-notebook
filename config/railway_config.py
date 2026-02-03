@@ -30,9 +30,10 @@ os.environ.setdefault("OPENAI_API_KEY", "REPLACE_WITH_YOUR_OPENAI_KEY")
 # os.environ.setdefault("OLLAMA_API_BASE", "http://your-ollama-host:11434")
 
 # =================================================================
-# DATABASE - These defaults work with single container, don't change
+# DATABASE - Connects to separate SurrealDB Railway service
 # =================================================================
-os.environ.setdefault("SURREAL_URL", "ws://localhost:8000/rpc")
+# "surrealdb" is the Railway service name - change if you named it differently
+os.environ.setdefault("SURREAL_URL", "ws://surrealdb.railway.internal:8000/rpc")
 os.environ.setdefault("SURREAL_USER", "root")
 os.environ.setdefault("SURREAL_PASSWORD", "hebrew-medical-notebook-2024")
 os.environ.setdefault("SURREAL_NAMESPACE", "open_notebook")

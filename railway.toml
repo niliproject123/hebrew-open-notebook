@@ -1,6 +1,6 @@
 [build]
 builder = "dockerfile"
-dockerfilePath = "Dockerfile.single"
+dockerfilePath = "Dockerfile"
 
 [deploy]
 # Health check via Next.js proxy to FastAPI backend

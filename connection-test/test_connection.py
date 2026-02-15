@@ -7,12 +7,14 @@ from surrealdb import AsyncSurreal
 async def test_connection():
     """Test SurrealDB connection with env variables."""
     # Support both HTTP and WS formats
-    url = os.getenv("SURREALDB_URL", "ws://localhost/rpc:8000")
+    url = os.getenv("SURREALDB_URL", "ws://localhost:8000/rpc")
 
     # Convert HTTP to WebSocket format if needed
     if url.startswith("http://"):
-        # http://host:port -> ws://host/rpc:port
-        url = url.replace("http://", "ws://").replace(":8000", "/rpc:8000")
+        # http://host:port -> ws://host:port/rpc
+        url = url.replace("http://", "ws://")
+        if not url.endswith("/rpc"):
+            url = url.rstrip("/") + "/rpc"
 
     user = os.getenv("SURREALDB_USER", "root")
     password = os.getenv("SURREALDB_PASS", "root")

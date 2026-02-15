@@ -1,0 +1,9 @@
+FROM surrealdb/surrealdb:v2
+
+# Use shell form to allow environment variable expansion
+CMD surreal start \
+    --user ${SURREAL_USER} \
+    --pass ${SURREAL_PASS} \
+    --bind ${SURREAL_BIND} \
+    --log ${SURREAL_LOG} \
+    ${SURREAL_PATH}

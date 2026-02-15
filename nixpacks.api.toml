@@ -2,12 +2,12 @@
 # This file configures the Python/FastAPI backend deployment on Railway
 
 [phases.setup]
-nixPkgs = ["python312", "python312Packages.pip", "curl"]
+nixPkgs = ["python312", "curl"]
 
 [phases.install]
 cmds = [
   "curl -LsSf https://astral.sh/uv/install.sh | sh",
-  "export PATH=\"$HOME/.cargo/bin:$PATH\"",
+  ". $HOME/.cargo/env",
   "uv sync --frozen --no-dev"
 ]
 
@@ -15,4 +15,4 @@ cmds = [
 cmds = []
 
 [start]
-cmd = "uv run uvicorn api.main:app --host 0.0.0.0 --port $PORT"
+cmd = ". $HOME/.cargo/env && uv run uvicorn api.main:app --host 0.0.0.0 --port $PORT"

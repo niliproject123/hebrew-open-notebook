@@ -1,11 +1,23 @@
-[build]
-builder = "dockerfile"
-dockerfilePath = "Dockerfile.single"
+# DEPRECATED: This file was for single-container Docker deployment
+# Docker image is too large for Railway to push
+#
+# NEW APPROACH: Multi-service deployment from source
+# Each service has its own Nixpacks config:
+# - nixpacks.api.toml (API service)
+# - nixpacks.worker.toml (Worker service)
+# - nixpacks.frontend.toml (Frontend service)
+# - SurrealDB uses Railway template
+#
+# See: RAILWAY_QUICKSTART.md for deployment instructions
 
-[deploy]
-# Health check via Next.js proxy to FastAPI backend
-healthcheckPath = "/api/health"
-healthcheckTimeout = 300
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 3
-numReplicas = 1
+# Keeping this file for reference only
+# [build]
+# builder = "dockerfile"
+# dockerfilePath = "Dockerfile.single"
+#
+# [deploy]
+# healthcheckPath = "/api/health"
+# healthcheckTimeout = 300
+# restartPolicyType = "on_failure"
+# restartPolicyMaxRetries = 3
+# numReplicas = 1

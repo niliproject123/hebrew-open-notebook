@@ -1,0 +1,18 @@
+# Nixpacks configuration for Open Notebook Worker Service
+# This file configures the background job worker deployment on Railway
+
+[phases.setup]
+nixPkgs = ["python312", "python312Packages.pip", "curl"]
+
+[phases.install]
+cmds = [
+  "curl -LsSf https://astral.sh/uv/install.sh | sh",
+  "export PATH=\"$HOME/.cargo/bin:$PATH\"",
+  "uv sync --frozen --no-dev"
+]
+
+[phases.build]
+cmds = []
+
+[start]
+cmd = "uv run surreal-commands-worker --import-modules commands"

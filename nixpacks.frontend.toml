@@ -2,7 +2,7 @@
 # This file configures the Next.js frontend deployment on Railway
 
 [phases.setup]
-nixPkgs = ["nodejs_20", "npm-10_x"]
+nixPkgs = ["nodejs_20", "npm-10_x", "curl", "bash"]
 
 [phases.install]
 cwd = "frontend"
@@ -13,4 +13,4 @@ cwd = "frontend"
 cmds = ["npm run build"]
 
 [start]
-cmd = "cd frontend && npm start"
+cmd = "bash scripts/wait-for-api.sh && cd frontend && npm start"

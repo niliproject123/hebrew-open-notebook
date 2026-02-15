@@ -15,4 +15,4 @@ cmds = [
 cmds = []
 
 [start]
-cmd = ". $HOME/.cargo/env && uv run surreal-commands-worker --import-modules commands"
+cmd = ". $HOME/.cargo/env && uv run --no-sync surreal-commands-worker --import-modules commands"
